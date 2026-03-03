@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lettings & Sales | Arie Properties Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Service Page Specific Styles */
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            background: var(--white);
+            padding: 4rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            border-radius: 15px;
+        }
+
+        .service-detail-image {
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .service-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 992px) {
+            .service-detail-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 3rem;
+            }
+            .service-detail-image {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-pattern">
+
+    <header class="header">
+        <nav class="nav container-fluid">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-arie">ARIE</span>
+                    <span class="logo-props">PROPERTIES</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="#services">Services <i data-lucide="chevron-down" class="icon-sm"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="feasibility.html">Feasibility</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#values">Core Values</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="contact.html" class="btn btn-primary btn-nav">Enquire Now</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sub section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="reveal-text">Lettings & Sales</h1>
+                    <p class="reveal-text">Professional brokerage services for landlords, sellers, and buyers.</p>
+                </div>
+                <div class="service-detail-grid reveal-image">
+                    <div class="service-detail-image">
+                        <img src="images/lettings.jpg" alt="Lettings & Sales">
+                    </div>
+                    <div class="service-detail-content">
+                        <h2>High-Performance Brokerage</h2>
+                        <p>Our sales and lettings team delivers exceptional results through proactive marketing, deep local knowledge, and an extensive network of qualified buyers and tenants.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Global Marketing Reach</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Professional Photography & Staging</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Comprehensive Tenant Vetting</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Negotiation & Legal Liaison</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary mt-4">List Your Property</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Brokerage Excellence</h2>
+                    <p class="reveal-up">Maximizing value for landlords and sellers.</p>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card reveal-up">
+                        <div class="value-icon"><i data-lucide="home"></i></div>
+                        <h3>Property Exposure</h3>
+                        <p>Leveraging premium portals and our private network to find the perfect buyer or tenant.</p>
+                    </div>
+                    <div class="value-card reveal-up">
+                        <div class="value-icon"><i data-lucide="key"></i></div>
+                        <h3>Seamless Process</h3>
+                        <p>Handling everything from staging and viewings to legal completion and key handover.</p>
+                    </div>
+                    <div class="value-card reveal-up">
+                        <div class="value-icon"><i data-lucide="gem"></i></div>
+                        <h3>Premium Results</h3>
+                        <p>Achieving optimal market rates through expert negotiation and strategic positioning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="other-services section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Explore Other Services</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal-up">
+                        <div class="service-image">
+                            <img src="images/residential.jpg" alt="Residential Real Estate">
+                        </div>
+                        <h3>Residential Real Estate</h3>
+                        <p>Curating exceptional living spaces for modern lifestyles.</p>
+                        <a href="residential.html" class="btn btn-secondary btn-sm">Explore More</a>
+                    </div>
+                    <div class="service-card reveal-up">
+                        <div class="service-image">
+                            <img src="images/feasibility.jpg" alt="Feasibility Studies">
+                        </div>
+                        <h3>Feasibility Studies</h3>
+                        <p>In-depth market analysis and project viability assessments.</p>
+                        <a href="feasibility.html" class="btn btn-secondary btn-sm">Explore More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo logo-footer">
+                        <span class="logo-arie">ARIE</span>
+                        <span class="logo-props">PROPERTIES</span>
+                    </div>
+                    <p>Arie Properties Ltd is a premier real estate consultancy with over 20 years of excellence. We specialize in high-value commercial and residential assets, delivering unparalleled expertise and trust to our global clientele.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#hero">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#values">Core Values</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="commercial.html">Commercial Real Estate</a></li>
+                        <li><a href="residential.html">Residential Real Estate</a></li>
+                        <li><a href="feasibility.html">Feasibility Studies</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arie Properties Ltd. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

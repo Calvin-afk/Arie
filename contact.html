@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Arie Properties Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-page-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            background: #000000;
+            padding: 4rem;
+            border-radius: 15px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 1px solid #333333;
+        }
+
+        .contact-info-card h2, .contact-form-card h2 {
+            color: var(--primary-red);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .contact-feature-list {
+            list-style: none;
+            margin: 3rem 0;
+            padding: 0;
+        }
+
+        .contact-feature-list li {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: flex-start;
+            background: none;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        .contact-feature-list li:hover {
+            transform: none;
+        }
+
+        .contact-icon-box {
+            width: 50px;
+            height: 50px;
+            background: #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--primary-red);
+            flex-shrink: 0;
+            border: 1px solid #333333;
+        }
+
+        .contact-icon-box i {
+            width: 24px;
+            height: 24px;
+        }
+
+        .contact-info-card strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info-card p {
+            color: #999999;
+            margin: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .map-full {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 992px) {
+            .contact-page-wrapper {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-pattern">
+
+    <header class="header">
+        <nav class="nav container-fluid">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-arie">ARIE</span>
+                    <span class="logo-props">PROPERTIES</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="index.html#services">Services <i data-lucide="chevron-down" class="icon-sm"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="feasibility.html">Feasibility</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#values">Core Values</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="contact.html" class="btn btn-primary btn-nav">Enquire Now</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sub section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="reveal-text">Contact Us</h1>
+                    <p class="reveal-text">We are here to help you with your next real estate project.</p>
+                </div>
+                
+                <div class="contact-page-wrapper reveal-image">
+                    <div class="contact-info-card">
+                        <h2>Get in Touch</h2>
+                        <p>Whether you're looking for a new commercial space, a residential home, or need a feasibility study, our team is ready to assist.</p>
+                        
+                        <ul class="contact-feature-list">
+                            <li>
+                                <div class="contact-icon-box"><i data-lucide="map-pin"></i></div>
+                                <div>
+                                    <strong>Our Office</strong>
+                                    <p>123 Prime Street, Mayfair, London, UK</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon-box"><i data-lucide="mail"></i></div>
+                                <div>
+                                    <strong>Email Us</strong>
+                                    <p>enquiries@arieproperties.com</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon-box"><i data-lucide="phone"></i></div>
+                                <div>
+                                    <strong>Call Us</strong>
+                                    <p>+44 (0) 20 7123 4567</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="contact-icon-box"><i data-lucide="clock"></i></div>
+                                <div>
+                                    <strong>Business Hours</strong>
+                                    <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="social-links mt-4">
+                            <a href="#"><i data-lucide="linkedin"></i></a>
+                            <a href="#"><i data-lucide="instagram"></i></a>
+                            <a href="#"><i data-lucide="facebook"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-card">
+                        <h2>Send a Message</h2>
+                        <form id="contact-page-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" placeholder="First Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Last Name" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Email Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" placeholder="Phone Number">
+                            </div>
+                            <div class="form-group">
+                                <select required>
+                                    <option value="" disabled selected>Subject of Inquiry</option>
+                                    <option value="commercial">Commercial Property</option>
+                                    <option value="residential">Residential Property</option>
+                                    <option value="feasibility">Feasibility Study</option>
+                                    <option value="other">Other Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="How can we help you?" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="map-full reveal-up mt-4">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.008703417646!2d-0.1495470233862295!3d51.5130283718151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876050630b92f7f%3A0x6e2f694e43e2f5b5!2sMayfair%2C%20London!5e0!3m2!1sen!2suk!4v1709400000000!5m2!1sen!2suk" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo logo-footer">
+                        <span class="logo-arie">ARIE</span>
+                        <span class="logo-props">PROPERTIES</span>
+                    </div>
+                    <p>Arie Properties Ltd is a premier real estate consultancy with over 20 years of excellence. We specialize in high-value commercial and residential assets, delivering unparalleled expertise and trust to our global clientele.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#hero">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#values">Core Values</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="commercial.html">Commercial Real Estate</a></li>
+                        <li><a href="residential.html">Residential Real Estate</a></li>
+                        <li><a href="feasibility.html">Feasibility Studies</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arie Properties Ltd. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Real Estate | Arie Properties Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Residential Page Specific Styles */
+        .service-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            background: var(--white);
+            padding: 4rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            border-radius: 15px;
+        }
+
+        .service-detail-image {
+            height: 500px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .service-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Property Listing Styles */
+        .property-listing {
+            padding: 6rem 0;
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .property-img-wrapper {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .property-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .property-card:hover .property-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .property-tag {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .property-info {
+            padding: 2rem;
+        }
+
+        .property-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-location {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .property-price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .property-divider {
+            height: 1px;
+            background: #EEEEEE;
+            margin-bottom: 1.5rem;
+        }
+
+        .property-specs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-item i {
+            width: 20px;
+            height: 20px;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-item span {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .spec-item strong {
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            border-radius: 15px;
+            overflow-y: auto;
+            position: relative;
+            padding: 4rem;
+            transform: scale(0.9);
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-blue);
+            transition: var(--transition);
+            z-index: 10;
+            float: right; /* Keep it aligned to the right */
+        }
+
+        .modal-close:hover {
+            color: var(--primary-red);
+            transform: rotate(90deg);
+        }
+
+        .modal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .modal-image {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-details h2 {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+        }
+
+        .modal-desc {
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+
+        .modal-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 992px) {
+            .service-detail-grid {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 3rem;
+            }
+            .service-detail-image {
+                height: 350px;
+            }
+            .modal-grid {
+                grid-template-columns: 1fr;
+            }
+            .modal-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-pattern">
+
+    <header class="header">
+        <nav class="nav container-fluid">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-arie">ARIE</span>
+                    <span class="logo-props">PROPERTIES</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html#hero">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="#services">Services <i data-lucide="chevron-down" class="icon-sm"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="commercial.html">Commercial</a></li>
+                        <li><a href="residential.html">Residential</a></li>
+                        <li><a href="feasibility.html">Feasibility</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#values">Core Values</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="contact.html" class="btn btn-primary btn-nav">Enquire Now</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-sub section">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="reveal-text">Residential Real Estate</h1>
+                    <p class="reveal-text">Curating exceptional living spaces for modern lifestyles.</p>
+                </div>
+                <div class="service-detail-grid reveal-image">
+                    <div class="service-detail-image">
+                        <img src="images/residential.jpg" alt="Residential Real Estate">
+                    </div>
+                    <div class="service-detail-content">
+                        <h2>Luxury Residential Advisory</h2>
+                        <p>Arie Properties Ltd specializes in the high-end residential market, offering a bespoke service to help you find your perfect home or investment property. We focus on premium locations and architecturally significant properties.</p>
+                        <ul class="feature-list">
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Property Search & Acquisition</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Portfolio Diversification</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Off-Market Opportunities</li>
+                            <li><i data-lucide="check-circle" class="icon-inline"></i> Property Management</li>
+                        </ul>
+                        <a href="contact.html" class="btn btn-primary mt-4">Find Your Home</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Listing Section (For Sale) -->
+        <section class="property-listing section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Properties For Sale</h2>
+                    <p class="reveal-up">Exclusive residential opportunities for investment and home ownership.</p>
+                </div>
+                
+                <div class="property-grid">
+                    <!-- Property 1 -->
+                    <div class="property-card reveal-up" data-prop="1">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-1.jpg" alt="Lori Boulevard">
+                            <div class="property-tag">For Sale</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>15458 Lori Boulevard</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> San Francisco, CA, USA
+                            </div>
+                            <div class="property-price">$680,000</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>4</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>1234</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+
+                    <!-- Property 2 -->
+                    <div class="property-card reveal-up" data-prop="2">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-2.jpg" alt="Grove Street">
+                            <div class="property-tag">For Sale</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>25557 Grove Street</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> San Francisco, CA, USA
+                            </div>
+                            <div class="property-price">$750,000</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>4</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>3</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>1234</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+
+                    <!-- Property 4 -->
+                    <div class="property-card reveal-up" data-prop="4">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-4.jpg" alt="Horizon Heights">
+                            <div class="property-tag">For Sale</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>Horizon Heights</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> Miami, FL, USA
+                            </div>
+                            <div class="property-price">$1,200,000</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>5</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>4</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>3</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>3500</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4 reveal-up">
+                    <a href="contact.html" class="btn btn-primary">View More Properties For Sale</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Listing Section (For Rent) -->
+        <section class="property-listing section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Properties For Rent</h2>
+                    <p class="reveal-up">Premium rental homes and apartments for a flexible lifestyle.</p>
+                </div>
+                
+                <div class="property-grid">
+                    <!-- Property 3 -->
+                    <div class="property-card reveal-up" data-prop="3">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-3.jpg" alt="Azure Villa">
+                            <div class="property-tag">For Rent</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>The Azure Villa</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> Beverly Hills, CA, USA
+                            </div>
+                            <div class="property-price">$5,500 / mo</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>3</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>3</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>2100</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+
+                    <!-- Property 5 -->
+                    <div class="property-card reveal-up" data-prop="5">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-5.jpg" alt="Skyline Loft">
+                            <div class="property-tag">For Rent</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>Skyline Loft</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> Manhattan, NY, USA
+                            </div>
+                            <div class="property-price">$4,200 / mo</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>1</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>1500</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+
+                    <!-- Property 6 -->
+                    <div class="property-card reveal-up" data-prop="6">
+                        <div class="property-img-wrapper">
+                            <img src="images/prop-6.jpg" alt="Coastal Cottage">
+                            <div class="property-tag">For Rent</div>
+                        </div>
+                        <div class="property-info">
+                            <h3>Coastal Cottage</h3>
+                            <div class="property-location">
+                                <i data-lucide="map-pin"></i> Malibu, CA, USA
+                            </div>
+                            <div class="property-price">$6,800 / mo</div>
+                            <div class="property-divider"></div>
+                            <div class="property-specs">
+                                <div class="spec-item"><i data-lucide="bed"></i><span>Beds</span><strong>3</strong></div>
+                                <div class="spec-item"><i data-lucide="bath"></i><span>Baths</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="layers"></i><span>Levels</span><strong>2</strong></div>
+                                <div class="spec-item"><i data-lucide="maximize"></i><span>Sqft</span><strong>1800</strong></div>
+                            </div>
+                            <button class="btn btn-secondary btn-full view-prop-btn">View Property</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-4 reveal-up">
+                    <a href="contact.html" class="btn btn-primary">View More Properties For Rent</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="other-services section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="reveal-up">Explore Other Services</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal-up">
+                        <div class="service-image">
+                            <img src="images/commercial.jpg" alt="Commercial Real Estate">
+                        </div>
+                        <h3>Commercial Real Estate</h3>
+                        <p>Strategic positioning and acquisition of premium commercial assets.</p>
+                        <a href="commercial.html" class="btn btn-secondary btn-sm">Explore More</a>
+                    </div>
+                    <div class="service-card reveal-up">
+                        <div class="service-image">
+                            <img src="images/feasibility.jpg" alt="Feasibility Studies">
+                        </div>
+                        <h3>Feasibility Studies</h3>
+                        <p>In-depth market analysis and project viability assessments.</p>
+                        <a href="feasibility.html" class="btn btn-secondary btn-sm">Explore More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Property Modal -->
+    <div class="modal-overlay" id="property-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal">
+                <i data-lucide="x" style="width: 32px; height: 32px;"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo logo-footer">
+                        <span class="logo-arie">ARIE</span>
+                        <span class="logo-props">PROPERTIES</span>
+                    </div>
+                    <p>Arie Properties Ltd is a premier real estate consultancy with over 20 years of excellence. We specialize in high-value commercial and residential assets, delivering unparalleled expertise and trust to our global clientele.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="linkedin"></i></a>
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-nav">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#hero">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#values">Core Values</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="commercial.html">Commercial Real Estate</a></li>
+                        <li><a href="residential.html">Residential Real Estate</a></li>
+                        <li><a href="feasibility.html">Feasibility Studies</a></li>
+                        <li><a href="lettings-sales.html">Lettings & Sales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arie Properties Ltd. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
